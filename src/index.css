@@ -1,0 +1,44 @@
+body {
+  background: rgb(0, 204, 255);
+}
+
+h1 {
+  font-family: 'Nabla', sans-serif;
+  font-size: 90px;
+  padding-top: 1em;
+}
+
+h2 {
+  font-family: 'Courgette', sans-serif;
+  padding-top: 1em;
+  color: aliceblue;
+}
+
+.nav-link {
+  color: aliceblue;
+}
+
+.logo-nav {
+  font-family: 'Nabla', sans-serif;
+  font-size: 1.6em;
+}
+
+.footer {
+  display: flex;
+  bottom: 0px;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer img {
+  width: 200px;
+  height: 70px;
+  padding: 15px;
+}
+.footer p {
+  color: aliceblue;
+  padding: 5px 20px;
+  font-family: 'Courgette', sans-serif;
+  padding-left: 25em;
+}
