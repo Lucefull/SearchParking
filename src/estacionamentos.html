@@ -19,6 +19,11 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="estacionamentos.css" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container">
@@ -49,53 +54,206 @@
           </ul>
         </div>
       </nav>
-      <div class="content">
+      <div class="content 8-col">
         <div class="table-area">
-          <div class="tab">
+          <div class="tab 8-col">
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Endereço</th>
+                  <th scope="col">Valor hora</th>
                 </tr>
               </thead>
-              <tbody class="table-group-divider tbody">
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-              </tbody>
+              <tbody class="table-group-divider tbody" id="tbody"></tbody>
             </table>
           </div>
-          <button type="button" class="btn btn-primary">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#modalEstacionamento">
             Novo Estacionamento
           </button>
-        </div>
-        <aside class="comentarios">
-          <div class="comentario-scroll">
-            <div class="card">
-              <div class="card-body">This is some text within a card body.</div>
-            </div>
-            <div class="card">
-              <div class="card-body">This is some text within a card body.</div>
+          <!-- modal estacionamento-->
+          <div class="modal fade" id="modalEstacionamento" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Adicionar Estacionamento</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="input-group input-group-sm mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      placeholder="Digite o nome"
+                      id="inputNome" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      placeholder="Digite o Endereço"
+                      id="inputEndereco" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      placeholder="Digite o Valor"
+                      id="inputValor" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal">
+                    Fechar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-dismiss="modal"
+                    onclick="novoEstacionamento()">
+                    Salvar
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" onclick="test()">
+          <!-- modal estacionamento-->
+        </div>
+        <aside class="comentarios 3-col">
+          <div class="comentario-scroll" id="comentarios"></div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#modalComnetario">
             Adicionar comentario
           </button>
+          <div class="modal fade" id="modalComnetario" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Adicionar Comentario</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="input-group input-group-sm mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      placeholder="Digite o comentario"
+                      id="inputComentario" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal">
+                    Fechar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-dismiss="modal"
+                    onclick="novoComentario()">
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </aside>
       </div>
     </div>
   </body>
   <script>
+    let idEstacionamento = 0;
     $(window).on('load', () => {
-      $.ajax({
-        url: 'http://localhost:3000/estacionamentos',
-      }).done(() => {});
+      refreshData();
     });
+
+    const refreshData = () => {
+      $.ajax({
+        url: 'http://localhost:8081/estacionamentos',
+        success: (result) => {
+          renderData(result);
+        },
+      });
+    };
+
+    const novoComentario = () => {
+      const texto = $('#inputComentario').val();
+      $.ajax({
+        method: 'post',
+        url: `http://localhost:8081/comentarios`,
+        data: {
+          idEstacionamento: idEstacionamento,
+          mensagem: texto,
+          data: new Date().toLocaleDateString(),
+        },
+      });
+      showComments(idEstacionamento);
+    };
+
+    const novoEstacionamento = () => {
+      const nome = $('#inputNome').val();
+      const valor = $('#inputValor').val();
+      const endereco = $('#inputEndereco').val();
+      $.ajax({
+        method: 'post',
+        url: `http://localhost:8081/estacionamentos`,
+        data: { nome: nome, valorHora: valor, endereco: endereco },
+      });
+      refreshData();
+    };
+
+    const renderData = (data) => {
+      const tBody = $('#tbody');
+      tBody.children().remove();
+      idEstacionamento = data[0].id;
+      data.map((e) =>
+        tBody.append(
+          `<tr onclick="showComments(${e.id})"><th scope="row">${e.id}</th><td>${e.nome}</td><td>${e.endereco}</td><td>${e.valorHora}</td></tr>)`
+        )
+      );
+      showComments(idEstacionamento);
+    };
+
+    const showComments = (id) => {
+      idEstacionamento = id;
+      const comentarios = $('#comentarios');
+      comentarios.children().remove();
+
+      $.ajax({
+        url: `http://localhost:8081/comentarios?idEstacionamento=${id}`,
+        success: (data) => {
+          data.map((e) => {
+            comentarios.append(
+              `<div class='card'><div class='card-body'>${e.mensagem}</div><div class='card-body'>data comentario: ${e.data}</div></div>`
+            );
+          });
+        },
+      });
+    };
   </script>
 </html>

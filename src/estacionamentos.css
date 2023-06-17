@@ -32,7 +32,7 @@ body {
 .comentarios {
   width: 15vw;
   background: white;
-  min-height: 35px;
+  /* min-height: 35px; */
   border-radius: 5px;
   display: flex;
   flex-direction: column;

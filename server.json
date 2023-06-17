@@ -1,5 +1,78 @@
 {
-    "estacionamentos": [
-        {}
-    ]
+  "estacionamentos": [
+    {
+      "nome": "PAINEIRA",
+      "valorHora": "5",
+      "endereco": "R. Siqueira Campos, 1182 - Centro Histórico, Porto Alegre - RS, 90010-001",
+      "id": 1
+    },
+    {
+      "nome": "Garagem Mauá",
+      "valorHora": "4",
+      "endereco": "Av. Mauá, 1263 - Centro Histórico, Porto Alegre - RS, 90010-110",
+      "id": 2
+    },
+    {
+      "nome": "Garagem Siqueira Campos",
+      "valorHora": "8,50",
+      "endereco": "R. Siqueira Campos, 866 - Centro Histórico, Porto Alegre - RS, 90010-000",
+      "id": 3
+    }
+  ],
+  "comentarios": [
+    {
+      "idEstacionamento": "2",
+      "mensagem": "Boa garagem, bem limpo e organizado. Os preços são salgados mas se vc precisa ir de carro no Centro é uma boa opção.",
+      "data": "17/06/2023",
+      "id": 1
+    },
+    {
+      "idEstacionamento": "2",
+      "mensagem": "ótima opção para quem busca um estacionamento no centro histórico, são vários andares até a locação por hora, mas tem um custo benefício muito bom, atendimento automatizado , elevadores, excelente estrutura e de brinde uma bela vista para o Guaíba",
+      "data": "17/06/2023",
+      "id": 2
+    },
+    {
+      "idEstacionamento": "2",
+      "mensagem": "Vagas para diaristas começam apenas à partir do sétimo andar, o acesso para os elevadores contém degraus, apenas um funcionário trabalhando. Ficamos mais de uma hora parados numa fila enorme de carros porque não paravam de deixar carros entrar",
+      "data": "17/06/2023",
+      "id": 3
+    },
+    {
+      "idEstacionamento": "1",
+      "mensagem": "Meu estacionamento preferido no Centro. Ótima localização e fácil acesso. Preços compatíveis com o esperado pela localização",
+      "data": "17/06/2023",
+      "id": 4
+    },
+    {
+      "idEstacionamento": "1",
+      "mensagem": "A melhor do centro de Porto Alegre .",
+      "data": "17/06/2023",
+      "id": 5
+    },
+    {
+      "idEstacionamento": "1",
+      "mensagem": "Sou fã da garagem Paineira. Sou cliente há anos e nunca tive um problema, apenas elogios. Equipe ótima e muito cuidadosa. Preço ótimo para um estacionamento da sua qualidade.",
+      "data": "17/06/2023",
+      "id": 6
+    },
+    {
+      "idEstacionamento": "3",
+      "mensagem": "Teste1",
+      "data": "17/06/2023",
+      "id": 7
+    },
+    {
+      "idEstacionamento": "3",
+      "mensagem": "Teste2",
+      "data": "17/06/2023",
+      "id": 8
+    },
+    {
+      "idEstacionamento": "3",
+      "mensagem": "Teste4",
+      "data": "17/06/2023",
+      "id": 9
+    }
+  ]
 }
